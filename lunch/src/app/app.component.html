@@ -1,7 +1,7 @@
 <div class="container flex-col">
     <div class="header flex flex-align-center flex-space-between">
-      <span class="header-logo"> </span>
       <span class="logo"></span>
+      <span class="header-logo"> </span>
       <button mat-raised-button *ngIf="!isUserAuthenticated" (click)="openLoginDialog()">Login</button>
       <div *ngIf="isUserAuthenticated">UserNmae</div>
     </div>
