@@ -1,0 +1,33 @@
+
+.create-order-card {
+    width: 100%; 
+    max-width: 400px; 
+    margin: 10px auto; 
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+  }
+  
+  .dialog-content {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .dialog-actions {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    background-color: #196cb5;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .submit-button:hover {
+    background-color: #808080;
+  }
