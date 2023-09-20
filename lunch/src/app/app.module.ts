@@ -11,6 +11,9 @@ import { AdminComponent } from './admin/admin.component';
 import { OrderListComponent } from './admin/order-list/order-list.component';
 import { CreateOrderComponent } from './admin/create-order/create-order.component';
 import { CreateMenuComponent } from './admin/create-menu/create-menu.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { CreateMenuComponent } from './admin/create-menu/create-menu.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { LoginComponent } from './login/login.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: "app-root",
@@ -56,7 +58,7 @@ export class AppComponent implements OnInit {
     },
   };
   data: any = null;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private dialog: MatDialog) {}
   ngOnInit(): void {
     this.getData();
     // this.loginData("user", "abc");
@@ -127,5 +129,15 @@ export class AppComponent implements OnInit {
         this.data = response
         console.log(this.data);
       });
+  }
+
+  openLoginDialog(): void {
+    const dialogRef = this.dialog.open(LoginComponent, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog closed', result);
+    });
   }
 }

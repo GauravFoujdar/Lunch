@@ -1,1 +1,17 @@
-<p>login works!</p>
+<mat-dialog-content>
+    <h2>Login</h2>
+    <form id="submitForm" (ngSubmit)="onSubmit()">
+        <mat-label>Username</mat-label> 
+         <mat-form-field>
+        <input matInput placeholder="Username" [(ngModel)]="username">
+      </mat-form-field>
+      <mat-label>Password</mat-label> 
+      <mat-form-field>
+        <input matInput type="password" placeholder="Password" [(ngModel)]="password">
+      </mat-form-field>
+      <div class="button-container">
+        <button mat-button (click)="onCancel()">Cancel</button>
+        <button mat-button color="primary" type="submit">Login</button>
+      </div>
+    </form>
+  </mat-dialog-content>
