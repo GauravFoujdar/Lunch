@@ -12,8 +12,14 @@ import { OrderListComponent } from './admin/order-list/order-list.component';
 import { CreateOrderComponent } from './admin/create-order/create-order.component';
 import { CreateMenuComponent } from './admin/create-menu/create-menu.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import {MatCardModule} from '@angular/material/card';
+import { CommonModule } from '@angular/common';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -27,12 +33,16 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    MatCardModule,MatFormFieldModule,MatRadioModule,MatDividerModule,MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

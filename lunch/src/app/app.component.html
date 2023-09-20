@@ -1,12 +1,9 @@
 <div class="container flex-col">
     <div class="header flex flex-align-center flex-space-between">
-      <div class="header-text">
-          Office Dabba Waala
-      </div>
-      <span class="logo">
-          <img src = "../assets/icons/logo.svg" alt="My Happy SVG"/>
-      </span>
-      <button mat-button (click)="openLoginDialog()">Login</button>
+      <span class="header-logo"> </span>
+      <span class="logo"></span>
+      <button mat-raised-button *ngIf="!isUserAuthenticated" (click)="openLoginDialog()">Login</button>
+      <div *ngIf="isUserAuthenticated">UserNmae</div>
     </div>
     <div class="router-container">
       <router-outlet></router-outlet>

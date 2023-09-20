@@ -1,1 +1,61 @@
-<p>menu works!</p>
+<mat-card class="card-container">
+  <mat-card-title>Today's Menu</mat-card-title>
+  <mat-divider></mat-divider>
+  <div class="flex flex-space-between">
+    <mat-radio-group [formControl]="menuFormControl">
+      <div class="flex flex-space-evenly">
+        <mat-card class="menu-container">
+          <mat-card-header>Veg Menu</mat-card-header>
+          <mat-card-content>
+            <ng-container *ngFor="let menuItem of vegMenu">
+              <mat-radio-button [value]="menuItem.id">{{
+                menuItem.name
+              }}</mat-radio-button>
+            </ng-container>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="menu-container">
+          <mat-card-header>Non-Veg Menu</mat-card-header>
+          <mat-card-content>
+            <ng-container *ngFor="let menuItem of nonVegMenu">
+              <mat-radio-button [value]="menuItem.id">{{
+                menuItem.name
+              }}</mat-radio-button>
+            </ng-container>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-radio-group>
+    <mat-card class="menu-container">
+      <mat-card-header>Desert Menu</mat-card-header>
+      <mat-card-content>
+        <mat-radio-group [formControl]="desertFormControl">
+          <ng-container *ngFor="let menuItem of DesertMenu">
+            <mat-radio-button [value]="menuItem.id">{{
+              menuItem.name
+            }}</mat-radio-button>
+          </ng-container>
+        </mat-radio-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="form-buttons">
+    <button mat-raised-button (click)="resetForm()">Reset</button>
+    <button mat-raised-button (click)="submitForm()">Submit</button>
+  </div>
+</mat-card>
+
+<div *ngIf="true">
+  <mat-card>
+    <mat-card-header>Today's Order</mat-card-header>
+    <mat-divider></mat-divider>
+    <mat-card-content>
+      <div>Dish</div>
+      <div>Desert</div>
+    </mat-card-content>
+    <div class="form-buttons">
+        <button mat-raised-button (click)="resetForm()">Modify Order</button>
+        <button mat-raised-button (click)="submitForm()">Delete Order</button>
+      </div>
+  </mat-card>
+</div>

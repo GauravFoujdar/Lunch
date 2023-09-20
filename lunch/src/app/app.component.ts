@@ -1,48 +1,50 @@
-import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AuthenticationService } from './authentication.service';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"],
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  title = "lunch_ordering";
+  title = 'lunch_ordering';
+  isUserAuthenticated: boolean = false;
   sampleMenu = {
     menu: {
-      date: "17/09/2023",
+      date: '17/09/2023',
       items: [
         {
-          name: "Char grilled Moroccan Paneer Thali",
-          category: "vegetarian",
-          vendor: "FreshMenu",
-          description: "",
+          name: 'Char grilled Moroccan Paneer Thali',
+          category: 'vegetarian',
+          vendor: 'FreshMenu',
+          description: '',
         },
         {
-          name: "Stir fried Paneer Quinoa Bowl",
-          category: "vegetarian",
-          vendor: "FreshMenu",
-          description: "",
+          name: 'Stir fried Paneer Quinoa Bowl',
+          category: 'vegetarian',
+          vendor: 'FreshMenu',
+          description: '',
         },
         {
-          name: "Philly Style Pulled Chicken Thali",
-          category: "non-vegetarian",
-          vendor: "FreshMenu",
-          description: "",
+          name: 'Philly Style Pulled Chicken Thali',
+          category: 'non-vegetarian',
+          vendor: 'FreshMenu',
+          description: '',
         },
         {
-          name: "Asian Hot Chicken Quinoa Bowl",
-          category: "non-vegetarian",
-          vendor: "FreshMenu",
-          description: "",
+          name: 'Asian Hot Chicken Quinoa Bowl',
+          category: 'non-vegetarian',
+          vendor: 'FreshMenu',
+          description: '',
         },
         {
-          name: "Irish Apple Cake",
-          category: "dessert",
-          vendor: "FreshMenu",
-          description: "",
+          name: 'Irish Apple Cake',
+          category: 'dessert',
+          vendor: 'FreshMenu',
+          description: '',
         },
       ],
     },
@@ -50,17 +52,22 @@ export class AppComponent implements OnInit {
   sampleOrder: any = {
     order: {
       userId: 3,
-      date: "13/09/2023",
+      date: '13/09/2023',
       items: [
-        "7f6bf7f8-4c2a-422f-a09e-ff893e9ad030",
-        "ddcf7dc5-559a-4281-bf8f-3ac1cd67793d",
+        '7f6bf7f8-4c2a-422f-a09e-ff893e9ad030',
+        'ddcf7dc5-559a-4281-bf8f-3ac1cd67793d',
       ],
     },
   };
   data: any = null;
-  constructor(private http: HttpClient,private dialog: MatDialog) {}
+  constructor(
+    private http: HttpClient,
+    private dialog: MatDialog,
+    private auth: AuthenticationService
+  ) {}
   ngOnInit(): void {
-    this.getData();
+    this.subscribeToAuthChanges();
+    // this.getData();
     // this.loginData("user", "abc");
     // this.getMenuByDate("13/09/2023");
     // this.addMenuItem(this.sampleMenu);
@@ -68,18 +75,24 @@ export class AppComponent implements OnInit {
     // this.getOrderByDate('13/09/2023');
   }
 
+  private subscribeToAuthChanges() {
+    this.auth.userAuthenticated.subscribe(
+      (auth) => (this.isUserAuthenticated = auth)
+    );
+  }
+
   private getData() {
-    this.http.get("http://localhost:3000/api/users").subscribe((response) => {
+    this.http.get('http://localhost:3000/api/users').subscribe((response) => {
       this.data = response;
       console.log(this.data);
-      this.loginData("user","abc")
-      this.loginData("user","ab")
+      this.loginData('user', 'abc');
+      this.loginData('user', 'ab');
     });
   }
 
   private loginData(name: string, pass: string) {
     this.http
-      .post("http://localhost:3000/api/login", {
+      .post('http://localhost:3000/api/login', {
         userName: name,
         password: pass,
       })
@@ -92,11 +105,11 @@ export class AppComponent implements OnInit {
 
   private addMenuItem(menu: any) {
     this.http
-      .post(" http://localhost:3000/api/menu", menu)
+      .post(' http://localhost:3000/api/menu', menu)
       .subscribe((response) => {
         this.data = response;
         console.log(this.data);
-        this.getMenuByDate("17/09/2023");
+        this.getMenuByDate('17/09/2023');
       });
   }
 
@@ -107,13 +120,12 @@ export class AppComponent implements OnInit {
         this.data = response;
         console.log(this.data);
         this.addOrder(this.sampleOrder);
-    
       });
   }
 
   private addOrder(menu: any) {
     this.http
-      .post(" http://localhost:3000/api/orders", menu)
+      .post(' http://localhost:3000/api/orders', menu)
       .subscribe((response) => {
         this.data = response;
         console.log(this.data);
@@ -126,7 +138,7 @@ export class AppComponent implements OnInit {
     this.http
       .get(` http://localhost:3000/api/orders?date=${date}`)
       .subscribe((response) => {
-        this.data = response
+        this.data = response;
         console.log(this.data);
       });
   }
@@ -136,7 +148,7 @@ export class AppComponent implements OnInit {
       width: '500px',
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log('Dialog closed', result);
     });
   }
