@@ -1,18 +1,55 @@
-.card-container{
-    width: 65%;
-}
-.menu-container{
-    width: 33%;
-}
+.card-container, .today-order{
+    width: 90%; 
+    max-width: none; 
+    margin-left: 90px; 
+    margin-top: 30px;
+    padding: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); 
+    background-color: #ffffff;
+  }
+  
+  .mat-card {
+    margin-bottom: 20px; 
+  }
+  
+  .mat-card-title, .mat-card-header {
+    font-weight: bold;
+    font-size: 18px;
+    padding: 10px 0; 
+  }
 
-.form-buttons{
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    align-items:center;
-    justify-content: flex-end;
+  .mat-divider {
+    margin: 10px 0;
+  }
+  
+  .mat-radio-button {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  
+  .form-buttons {
+    text-align: right;
+    margin-top: 20px; 
+  }
 
-    button{
-        margin: 15px;
-    }
-}
+  .mat-card:nth-child(2) { 
+    background-color: #f0f2f5;
+  }
+  
+  .mat-card-content div {
+    margin-bottom: 10px; 
+  }
+  
+  .mat-card:nth-child(2) button {
+    margin-right: 10px; 
+  }
+  
+  .form-buttons button {
+    margin: 0 10px;
+    color: #ffffff;
+    background-color: #196cb5; 
+  }
+  
+  .menu-container {
+    margin: 10px; 
+  }

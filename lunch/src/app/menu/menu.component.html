@@ -31,7 +31,7 @@
       </div>
     </mat-radio-group>
     <mat-card class="menu-container">
-      <mat-card-header>Desert Menu</mat-card-header>
+      <mat-card-header>Dessert Menu</mat-card-header>
       <mat-card-content>
         <mat-radio-group [formControl]="desertFormControl">
           <ng-container *ngFor="let menuItem of DesertMenu">
@@ -50,8 +50,8 @@
 </mat-card>
 
 <div *ngIf="true">
-  <mat-card>
-    <mat-card-header>Today's Order</mat-card-header>
+  <mat-card class="today-order">
+    <mat-card-title>Today's Order</mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content>
       <div>Dish</div>
