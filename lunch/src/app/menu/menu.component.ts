@@ -6,6 +6,7 @@ import { FormBuilder, FormControl } from '@angular/forms';
 import { AuthenticationService } from '../authentication.service';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginComponent } from '../login/login.component';
+import { Iorder } from '../models/IOrder';
 
 @Component({
   selector: 'app-menu',
@@ -21,53 +22,7 @@ export class MenuComponent implements OnInit {
   public DesertMenu: IItems[] = [];
   public date: string = '';
 
-  public ordersData =[
-    {
-      "userId": 1,
-      "date": "20/09/2023",
-      "items": [
-        "e3ef423a-88d4-4284-c942-bb2e46730279",
-        "cc50cb85-265d-4e1d-f754-0c4422abf592"
-      ],
-      "id": "fef1d3d5-6cf9-45ff-77e1-6288ba94c8bb"
-    },
-    {
-      "userId": 1,
-      "date": "20/09/2023",
-      "items": [
-        "e3ef423a-88d4-4284-c942-bb2e46730279",
-        "cc50cb85-265d-4e1d-f754-0c4422abf592"
-      ],
-      "id": "a04b3e42-e017-460d-5bf7-313c11a5c783"
-    },
-    {
-      "userId": 1,
-      "date": "20/09/2023",
-      "items": [
-        "e3ef423a-88d4-4284-c942-bb2e46730279",
-        "cc50cb85-265d-4e1d-f754-0c4422abf592"
-      ],
-      "id": "0abe013f-37f1-4c9f-251c-dfcc0d48f668"
-    },
-    {
-      "userId": 1,
-      "date": "20/09/2023",
-      "items": [
-        "e3ef423a-88d4-4284-c942-bb2e46730279",
-        "8bc0e9ae-043a-40c2-532c-f9e23b2f45a0"
-      ],
-      "id": "a5397f0b-48cb-4d2c-b545-307f7246395e"
-    },
-    {
-      "userId": 1,
-      "date": "20/09/2023",
-      "items": [
-        "e3ef423a-88d4-4284-c942-bb2e46730279",
-        "8bc0e9ae-043a-40c2-532c-f9e23b2f45a0"
-      ],
-      "id": "1e99ee0e-b612-455d-3f55-416f2d7b0889"
-    }
-  ]
+  public ordersData :Iorder[]=[]
 
   menuFormControl = new FormControl();
   desertFormControl = new FormControl();
@@ -89,6 +44,7 @@ export class MenuComponent implements OnInit {
     this.getMenuByDate(this.date);
     this.subscribeToAuthChanges();
     this.checkTime();
+    this.getOrderByDate(this.date)
   }
   checkTime() {
     const currentTime = new Date();
@@ -165,9 +121,9 @@ export class MenuComponent implements OnInit {
   }
   private getOrderByDate(date: string) {
     this.http
-      .get(` http://localhost:3000/api/orders?date=${date}`)
+      .get<Iorder[]>(` http://localhost:3000/api/orders?date=${date}`)
       .subscribe((response) => {
-        console.log(response);
+        this.ordersData=response
       });
   }
 }
