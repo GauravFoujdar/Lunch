@@ -14,7 +14,7 @@ import { LoginComponent } from '../login/login.component';
 })
 export class MenuComponent implements OnInit {
   public menuData: IMenu | null = null;
-
+public isAdminUser:boolean=false;
   public vegMenu: IItems[] = [];
   public nonVegMenu: IItems[] = [];
   public DesertMenu: IItems[] = [];
@@ -33,8 +33,15 @@ export class MenuComponent implements OnInit {
     const today = new Date();
     const formattedDate = today.toLocaleDateString('en-GB');
     this.getMenuByDate(formattedDate);
+    this.subscribeToAuthChanges();
   }
 
+  private subscribeToAuthChanges() {
+    this.auth.userAuthenticated.subscribe(() => {
+      this.isAdminUser = this.auth.userType==='admin';
+      console.log(this.isAdminUser);
+    });
+  }
   private getMenuByDate(date: string) {
     this.http
       .get<IMenu>(`http://localhost:3000/api/menu?date=${date}`)

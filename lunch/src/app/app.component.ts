@@ -12,6 +12,7 @@ import { AuthenticationService } from './authentication.service';
 export class AppComponent implements OnInit {
   title = 'lunch_ordering';
   isUserAuthenticated: boolean = false;
+  userName: string = '';
   sampleMenu = {
     menu: {
       date: '17/09/2023',
@@ -76,9 +77,11 @@ export class AppComponent implements OnInit {
   }
 
   private subscribeToAuthChanges() {
-    this.auth.userAuthenticated.subscribe(
-      (auth) => (this.isUserAuthenticated = auth)
-    );
+    this.auth.userAuthenticated.subscribe((auth) => {
+      this.isUserAuthenticated = auth;
+      this.userName = this.auth.getUserName;
+      console.log(this.userName);
+    });
   }
 
   private getData() {
@@ -151,5 +154,10 @@ export class AppComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       console.log('Dialog closed', result);
     });
+  }
+  logOut() {
+    this.auth.setUserAuthentication = false;
+    this.auth.setUserName = '';
+    this.auth.setUserType = '';
   }
 }

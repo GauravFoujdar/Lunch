@@ -1,21 +1,27 @@
 <mat-dialog-content>
-    <h2>Login</h2>
-    <form id="submitForm" (ngSubmit)="onSubmit()">
-        <div class="input-container">
-        <mat-label>Username</mat-label> 
-         <mat-form-field>
-        <input matInput placeholder="Username" [(ngModel)]="username">
-      </mat-form-field>
+  <h2>Login</h2>
+  <form id="loginForm" (ngSubmit)="onSubmit()">
+    <div class="input-container">
+      <mat-label>Username</mat-label>
+       <input
+          matInput
+          placeholder="Username"
+          [formControl]="usernameControl"
+        />
     </div>
     <div class="input-container">
-      <mat-label>Password</mat-label> 
-      <mat-form-field>
-        <input matInput type="password" placeholder="Password" [(ngModel)]="password">
-      </mat-form-field>
-    </div>
-      <div class="button-container">
-        <button mat-button (click)="onCancel()">Cancel</button>
-        <button mat-button color="primary" type="submit">Login</button>
+      <mat-label>Password</mat-label>
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          [formControl]="passwordControl"
+        />
       </div>
-    </form>
+      <div class="incorrect-password" *ngIf="isWrongPassword">Incorrect username or password</div>
+    <div class="button-container">
+      <button mat-button (click)="onCancel()">Cancel</button>
+      <button mat-button color="primary" type="submit">Login</button>
+    </div>
+  </form>
 </mat-dialog-content>
