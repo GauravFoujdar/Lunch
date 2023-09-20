@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   userName: string = '';
   sampleMenu = {
     menu: {
-      date: '17/09/2023',
+      date: '20/09/2023',
       items: [
         {
           name: 'Char grilled Moroccan Paneer Thali',
@@ -156,8 +156,8 @@ export class AppComponent implements OnInit {
     });
   }
   logOut() {
-    this.auth.setUserAuthentication = false;
     this.auth.setUserName = '';
     this.auth.setUserType = '';
+    this.auth.setUserAuthentication = false;
   }
 }

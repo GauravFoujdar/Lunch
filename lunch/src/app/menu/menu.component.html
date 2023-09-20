@@ -1,31 +1,34 @@
-<div *ngIf="!isAdminUser">
-<app-create-menu>
-</app-create-menu>
+<div *ngIf="isAdminUser">
+  <app-create-menu> </app-create-menu>
 </div>
 <mat-card class="card-container">
   <mat-card-title>Today's Menu</mat-card-title>
   <mat-divider></mat-divider>
-  <div class="flex flex-space-between">
-    <mat-radio-group [formControl]="menuFormControl">
+  <div class="flex">
+    <mat-radio-group [formControl]="menuFormControl" [disabled]="canMakeOrder">
       <div class="flex flex-space-evenly">
         <mat-card class="menu-container">
           <mat-card-header>Veg Menu</mat-card-header>
           <mat-card-content>
-            <ng-container *ngFor="let menuItem of vegMenu">
-              <mat-radio-button [value]="menuItem.id">{{
-                menuItem.name
-              }}</mat-radio-button>
-            </ng-container>
+            <div class="flex-col">
+              <ng-container *ngFor="let menuItem of vegMenu">
+                <mat-radio-button [value]="menuItem.id">{{
+                  menuItem.name
+                }}</mat-radio-button>
+              </ng-container>
+            </div>
           </mat-card-content>
         </mat-card>
         <mat-card class="menu-container">
           <mat-card-header>Non-Veg Menu</mat-card-header>
           <mat-card-content>
-            <ng-container *ngFor="let menuItem of nonVegMenu">
-              <mat-radio-button [value]="menuItem.id">{{
-                menuItem.name
-              }}</mat-radio-button>
-            </ng-container>
+            <div class="flex-col">
+              <ng-container *ngFor="let menuItem of nonVegMenu">
+                <mat-radio-button [value]="menuItem.id">{{
+                  menuItem.name
+                }}</mat-radio-button>
+              </ng-container>
+            </div>
           </mat-card-content>
         </mat-card>
       </div>
@@ -33,19 +36,34 @@
     <mat-card class="menu-container">
       <mat-card-header>Dessert Menu</mat-card-header>
       <mat-card-content>
-        <mat-radio-group [formControl]="desertFormControl">
-          <ng-container *ngFor="let menuItem of DesertMenu">
-            <mat-radio-button [value]="menuItem.id">{{
-              menuItem.name
-            }}</mat-radio-button>
-          </ng-container>
-        </mat-radio-group>
+        <div class="flex-col">
+          <mat-radio-group [formControl]="desertFormControl">
+            <ng-container *ngFor="let menuItem of DesertMenu">
+              <mat-radio-button [value]="menuItem.id">{{
+                menuItem.name
+              }}</mat-radio-button>
+            </ng-container>
+          </mat-radio-group>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
-  <div class="form-buttons">
-    <button mat-raised-button (click)="resetForm()">Reset</button>
-    <button mat-raised-button (click)="submitForm()">Submit</button>
+  <div class="form-buttons flex flex-justify-end flex-align-center">
+    <div style="color: blue" *ngIf="canMakeOrder">
+      Order are only allowed between 9 AM and 11 AM.
+    </div>
+    <div>
+      <button mat-raised-button (click)="resetForm()" [disabled]="canMakeOrder">
+        Reset
+      </button>
+      <button
+        mat-raised-button
+        (click)="submitForm()"
+        [disabled]="!canMakeOrder"
+      >
+        Submit
+      </button>
+    </div>
   </div>
 </mat-card>
 
@@ -54,12 +72,41 @@
     <mat-card-title>Today's Order</mat-card-title>
     <mat-divider></mat-divider>
     <mat-card-content>
-      <div>Dish</div>
-      <div>Desert</div>
+      <table  >
+        <tr>
+          <th >UserId</th>
+          <th >Order</th>
+        </tr>
+        <ng-container *ngFor="let tableRow of ordersData">
+          <tr>
+            <td>{{tableRow.userId}}
+            </td>
+            <td>{{tableRow.items}}
+            </td>
+          </tr>
+        </ng-container>
+      </table>
     </mat-card-content>
-    <div class="form-buttons">
-        <button mat-raised-button (click)="resetForm()">Modify Order</button>
-        <button mat-raised-button (click)="submitForm()">Delete Order</button>
+    <div class="form-buttons flex flex-justify-end flex-align-center">
+      <div style="color: blue" *ngIf="canMakeOrder">
+        Modifications are only allowed between 9 AM and 11 AM.
       </div>
+      <div>
+        <button
+          mat-raised-button
+          (click)="resetForm()"
+          [disabled]="canMakeOrder"
+        >
+          Modify Order
+        </button>
+        <button
+          mat-raised-button
+          (click)="submitForm()"
+          [disabled]="canMakeOrder"
+        >
+          Delete Order
+        </button>
+      </div>
+    </div>
   </mat-card>
 </div>

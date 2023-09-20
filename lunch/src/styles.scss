@@ -23,9 +23,15 @@ body {
 .flex-align-center {
   align-items: center;
 }
+.flex-align-end {
+  align-items: flex-end;
+}
 
 .flex-space-between {
   justify-content: space-between;
+}
+.flex-justify-end {
+  justify-content: flex-end;
 }
 .flex-space-evenly {
   justify-content: space-evenly;

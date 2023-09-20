@@ -19,6 +19,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
+import {MatTableModule} from '@angular/material/table';
 
 
 @NgModule({
@@ -42,7 +43,7 @@ import {MatButtonModule} from '@angular/material/button';
     MatDialogModule,
     MatFormFieldModule,
     FormsModule,
-    MatCardModule,MatFormFieldModule,MatRadioModule,MatDividerModule,MatButtonModule
+    MatCardModule,MatFormFieldModule,MatRadioModule,MatDividerModule,MatButtonModule,MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

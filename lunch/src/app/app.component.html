@@ -3,7 +3,7 @@
       <span class="logo"></span>
       <span class="header-logo"> </span>
       <button mat-raised-button *ngIf="!isUserAuthenticated" (click)="openLoginDialog()">Login</button>
-      <div  *ngIf="isUserAuthenticated" class="flex flex-align-center">
+      <div  *ngIf="isUserAuthenticated" class="flex flex-align-center" style="color: white;">
         <div>Welcome, {{userName}}</div>
         <button style="margin-left: 5px;" mat-raised-button (click)="logOut()">Log out!</button>
       </div>
