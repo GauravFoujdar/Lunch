@@ -1,0 +1,19 @@
+.container {
+  min-height: 100vh;
+  width: 100vw;
+  .header {
+    padding: 20px;
+    height: 60px;
+    width: 100%;
+    background-color: #196cb5;
+    .header-text{
+      font-size: large;
+    }
+    .logo {
+      img {
+        height: 80%;
+        width: 80%;
+      }
+    }
+  }
+}
